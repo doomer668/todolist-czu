@@ -7,15 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace ToDo_List_App
 {
 	public partial class ToDoList : Form
 	{
-		public ToDoList()
-		{
-			InitializeComponent();
-		}
 
 		private void label1_Click(object sender, EventArgs e)
 		{
@@ -32,30 +29,43 @@ namespace ToDo_List_App
 
 		}
 
-		DataTable todoList = new DataTable(); //source of data
+		DataTable todoList = new DataTable("TodoItems"); //source of data
 		bool isEditing = false;
+        private string filePath = "todoList.xml";
 
-		private void ToDoList_Load(object sender, EventArgs e)
+        public ToDoList()
+        {
+            InitializeComponent();
+            InitializeDataTable();
+            LoadData();
+        }
+
+        private void InitializeDataTable()
+        {
+            todoList.Columns.Add("Title", typeof(string));
+            todoList.Columns.Add("Description", typeof(string));
+        }
+
+
+        // vytvoří v databázi dva sloupce s názvy title a description, které pak přenese do tabulky v aplikaci.
+        private void ToDoList_Load(object sender, EventArgs e)
 		{
-			// Clear columns
-			todoList.Columns.Add("Title");
-			todoList.Columns.Add("Description");
 
-			// Point our datagridview to the datasource
 			toDoListView.DataSource = todoList;
 		}
 
-		private void newButton_Click(object sender, EventArgs e)
+        // vymaže obsah textového pole „title“ a „description“.
+        private void newButton_Click(object sender, EventArgs e)
 		{
 			titleTextBox.Text = "";
 			descriptionTextBox.Text = "";
 		}
 
-		private void editButton_Click_1(Object sender, EventArgs e)
+        //Vyplnění textových polí daty z tabulky
+        private void editButton_Click_1(Object sender, EventArgs e)
 		{
 			isEditing = true;
 
-			// Fill text fields with data from table
 			titleTextBox.Text = todoList.Rows[toDoListView.CurrentCell.RowIndex].ItemArray[0].ToString();
 			descriptionTextBox.Text = todoList.Rows[toDoListView.CurrentCell.RowIndex].ItemArray[1].ToString();
 		}
@@ -72,9 +82,16 @@ namespace ToDo_List_App
 			}
 		}
 
-		private void saveButton_Click(object sender, EventArgs e)
+        // přenáší data z textových polí do databáze, která jsou přenesena do tabulky v aplikaci.
+        private void saveButton_Click(object sender, EventArgs e)
 		{
-			if(isEditing)
+            if (string.IsNullOrWhiteSpace(titleTextBox.Text))
+            {
+                MessageBox.Show("Title cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (isEditing)
 			{
 				todoList.Rows[toDoListView.CurrentCell.RowIndex]["Title"] = titleTextBox.Text;
 				todoList.Rows[toDoListView.CurrentCell.RowIndex]["Description"] = descriptionTextBox.Text;
@@ -83,10 +100,51 @@ namespace ToDo_List_App
 			{
 				todoList.Rows.Add(titleTextBox.Text, descriptionTextBox.Text);
 			}
-			// Clear fields 
+
 			titleTextBox.Text = "";
 			descriptionTextBox.Text = "";
 			isEditing = false;
+			
 		}
-	}
+
+        private void SaveData()
+        {
+            try
+            {
+                todoList.WriteXml(filePath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to save data: " + ex.Message);
+            }
+        }
+
+        // Load data from XML file
+        private void LoadData()
+        {
+            try
+            {
+                if (File.Exists(filePath))
+                {
+                    todoList.ReadXml(filePath);
+                }
+                else
+                {
+                    todoList.Columns.Add("Title");
+                    todoList.Columns.Add("Description");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to load data: " + ex.Message);
+            }
+        }
+
+        // Override form closing event to save data
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            SaveData();
+            base.OnFormClosing(e);
+        }
+    }
 }

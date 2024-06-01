@@ -8,3 +8,13 @@ C:\Users\Damir\Desktop\czu\programmovani\TodoList\ToDo List App\obj\Debug\ToDo L
 C:\Users\Damir\Desktop\czu\programmovani\TodoList\ToDo List App\obj\Debug\ToDo List App.csproj.CoreCompileInputs.cache
 C:\Users\Damir\Desktop\czu\programmovani\TodoList\ToDo List App\obj\Debug\ToDo List App.exe
 C:\Users\Damir\Desktop\czu\programmovani\TodoList\ToDo List App\obj\Debug\ToDo List App.pdb
+D:\Рабочий стол\czu\programmovani\todolist-czu\TodoList\ToDo List App\bin\Debug\ToDo List App.exe.config
+D:\Рабочий стол\czu\programmovani\todolist-czu\TodoList\ToDo List App\bin\Debug\ToDo List App.exe
+D:\Рабочий стол\czu\programmovani\todolist-czu\TodoList\ToDo List App\bin\Debug\ToDo List App.pdb
+D:\Рабочий стол\czu\programmovani\todolist-czu\TodoList\ToDo List App\obj\Debug\ToDo List App.csproj.AssemblyReference.cache
+D:\Рабочий стол\czu\programmovani\todolist-czu\TodoList\ToDo List App\obj\Debug\ToDo_List_App.ToDoList.resources
+D:\Рабочий стол\czu\programmovani\todolist-czu\TodoList\ToDo List App\obj\Debug\ToDo_List_App.Properties.Resources.resources
+D:\Рабочий стол\czu\programmovani\todolist-czu\TodoList\ToDo List App\obj\Debug\ToDo List App.csproj.GenerateResource.cache
+D:\Рабочий стол\czu\programmovani\todolist-czu\TodoList\ToDo List App\obj\Debug\ToDo List App.csproj.CoreCompileInputs.cache
+D:\Рабочий стол\czu\programmovani\todolist-czu\TodoList\ToDo List App\obj\Debug\ToDo List App.exe
+D:\Рабочий стол\czu\programmovani\todolist-czu\TodoList\ToDo List App\obj\Debug\ToDo List App.pdb
