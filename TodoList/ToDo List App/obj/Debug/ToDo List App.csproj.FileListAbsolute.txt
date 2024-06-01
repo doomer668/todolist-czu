@@ -1,0 +1,10 @@
+C:\Users\Damir\Desktop\czu\programmovani\TodoList\ToDo List App\bin\Debug\ToDo List App.exe.config
+C:\Users\Damir\Desktop\czu\programmovani\TodoList\ToDo List App\bin\Debug\ToDo List App.exe
+C:\Users\Damir\Desktop\czu\programmovani\TodoList\ToDo List App\bin\Debug\ToDo List App.pdb
+C:\Users\Damir\Desktop\czu\programmovani\TodoList\ToDo List App\obj\Debug\ToDo List App.csproj.AssemblyReference.cache
+C:\Users\Damir\Desktop\czu\programmovani\TodoList\ToDo List App\obj\Debug\ToDo_List_App.ToDoList.resources
+C:\Users\Damir\Desktop\czu\programmovani\TodoList\ToDo List App\obj\Debug\ToDo_List_App.Properties.Resources.resources
+C:\Users\Damir\Desktop\czu\programmovani\TodoList\ToDo List App\obj\Debug\ToDo List App.csproj.GenerateResource.cache
+C:\Users\Damir\Desktop\czu\programmovani\TodoList\ToDo List App\obj\Debug\ToDo List App.csproj.CoreCompileInputs.cache
+C:\Users\Damir\Desktop\czu\programmovani\TodoList\ToDo List App\obj\Debug\ToDo List App.exe
+C:\Users\Damir\Desktop\czu\programmovani\TodoList\ToDo List App\obj\Debug\ToDo List App.pdb
