@@ -11,27 +11,26 @@ using System.IO;
 
 namespace ToDo_List_App
 {
-	public partial class ToDoList : Form
-	{
+    public partial class ToDoList : Form
+    {
+        private void label1_Click(object sender, EventArgs e)
+        {
 
-		private void label1_Click(object sender, EventArgs e)
-		{
+        }
 
-		}
+        private void label2_Click(object sender, EventArgs e)
+        {
+          
+        }
 
-		private void label2_Click(object sender, EventArgs e)
-		{
+        private void label3_Click(object sender, EventArgs e)
+        {
+          
+        }
 
-		}
-
-		private void label3_Click(object sender, EventArgs e)
-		{
-
-		}
-
-		DataTable todoList = new DataTable("TodoItems"); //source of data
-		bool isEditing = false;
-        private string filePath = "todoList.xml";
+        DataTable todoList = new DataTable("TodoItems"); // zdroj dat
+        bool isEditing = false;
+        private string filePath = "todoList.xml"; // cesta k souboru pro ukládání dat
 
         public ToDoList()
         {
@@ -40,51 +39,50 @@ namespace ToDo_List_App
             LoadData();
         }
 
+        // Inicializace datové tabulky pro úkoly
         private void InitializeDataTable()
         {
             todoList.Columns.Add("Title", typeof(string));
             todoList.Columns.Add("Description", typeof(string));
         }
 
-
-        // vytvoří v databázi dva sloupce s názvy title a description, které pak přenese do tabulky v aplikaci.
+        // Načítání dat do tabulky při načtení formuláře
         private void ToDoList_Load(object sender, EventArgs e)
-		{
+        {
+            toDoListView.DataSource = todoList;
+        }
 
-			toDoListView.DataSource = todoList;
-		}
-
-        // vymaže obsah textového pole „title“ a „description“.
+        // Vymazání obsahu textových polí "title" a "description"
         private void newButton_Click(object sender, EventArgs e)
-		{
-			titleTextBox.Text = "";
-			descriptionTextBox.Text = "";
-		}
+        {
+            titleTextBox.Text = "";
+            descriptionTextBox.Text = "";
+        }
 
-        //Vyplnění textových polí daty z tabulky
+        // Vyplnění textových polí daty z tabulky pro úpravy
         private void editButton_Click_1(Object sender, EventArgs e)
-		{
-			isEditing = true;
+        {
+            isEditing = true;
+            titleTextBox.Text = todoList.Rows[toDoListView.CurrentCell.RowIndex].ItemArray[0].ToString();
+            descriptionTextBox.Text = todoList.Rows[toDoListView.CurrentCell.RowIndex].ItemArray[1].ToString();
+        }
 
-			titleTextBox.Text = todoList.Rows[toDoListView.CurrentCell.RowIndex].ItemArray[0].ToString();
-			descriptionTextBox.Text = todoList.Rows[toDoListView.CurrentCell.RowIndex].ItemArray[1].ToString();
-		}
+        // Odstranění vybraného řádku z tabulky
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                todoList.Rows[toDoListView.CurrentCell.RowIndex].Delete();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Chyba:" + ex);
+            }
+        }
 
-		private void deleteButton_Click(object sender, EventArgs e)
-		{
-			try
-			{
-				todoList.Rows[toDoListView.CurrentCell.RowIndex].Delete();
-			}
-			catch(Exception ex)
-			{
-				Console.WriteLine("Error:" + ex);
-			}
-		}
-
-        // přenáší data z textových polí do databáze, která jsou přenesena do tabulky v aplikaci.
+        // Uložení nebo aktualizace záznamu v tabulce
         private void saveButton_Click(object sender, EventArgs e)
-		{
+        {
             if (string.IsNullOrWhiteSpace(titleTextBox.Text))
             {
                 MessageBox.Show("Title cannot be empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -92,21 +90,21 @@ namespace ToDo_List_App
             }
 
             if (isEditing)
-			{
-				todoList.Rows[toDoListView.CurrentCell.RowIndex]["Title"] = titleTextBox.Text;
-				todoList.Rows[toDoListView.CurrentCell.RowIndex]["Description"] = descriptionTextBox.Text;
-			}
-			else
-			{
-				todoList.Rows.Add(titleTextBox.Text, descriptionTextBox.Text);
-			}
+            {
+                todoList.Rows[toDoListView.CurrentCell.RowIndex]["Title"] = titleTextBox.Text;
+                todoList.Rows[toDoListView.CurrentCell.RowIndex]["Description"] = descriptionTextBox.Text;
+            }
+            else
+            {
+                todoList.Rows.Add(titleTextBox.Text, descriptionTextBox.Text);
+            }
 
-			titleTextBox.Text = "";
-			descriptionTextBox.Text = "";
-			isEditing = false;
-			
-		}
+            titleTextBox.Text = "";
+            descriptionTextBox.Text = "";
+            isEditing = false;
+        }
 
+        // Uložení dat do XML souboru
         private void SaveData()
         {
             try
@@ -115,11 +113,11 @@ namespace ToDo_List_App
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to save data: " + ex.Message);
+                MessageBox.Show("Nepodařilo se uložit data: " + ex.Message);
             }
         }
 
-        // Load data from XML file
+        // Načítání dat z XML souboru
         private void LoadData()
         {
             try
@@ -136,11 +134,11 @@ namespace ToDo_List_App
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to load data: " + ex.Message);
+                MessageBox.Show("Nepodařilo se načíst data: " + ex.Message);
             }
         }
 
-        // Override form closing event to save data
+        // Přepsání události zavírání formuláře pro uložení dat
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             SaveData();

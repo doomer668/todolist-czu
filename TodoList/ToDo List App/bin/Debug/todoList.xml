@@ -1,11 +1,7 @@
 <?xml version="1.0" standalone="yes"?>
 <DocumentElement>
   <TodoItems>
-    <Title>oiweoiewvwheo</Title>
-    <Description>ldaijewvohewoi</Description>
-  </TodoItems>
-  <TodoItems>
-    <Title>закончить сохранение данных программы </Title>
-    <Description>с помощью аи доделать прогу так, что бы он брал и инфу из файла и сохранял ее там </Description>
+    <Title>složit zkoušku z programování </Title>
+    <Description>odevzdat projekt včas a složit zkoušku 5. června.</Description>
   </TodoItems>
 </DocumentElement>
